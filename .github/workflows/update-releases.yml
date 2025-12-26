@@ -1,0 +1,32 @@
+name: Update Public Release
+
+on:
+  repository_dispatch:
+    types: [new-installer-release]
+
+jobs:
+  publish-release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ github.event.client_payload.version }}
+          name: Release v${{ github.event.client_payload.version }}
+          body: |
+            ## JavaFX App Demo v${{ github.event.client_payload.version }}
+            
+            Installers for this version have been generated and are ready for download.
+            
+            ### Installation Instructions
+            * **Windows**: Download and run the `.msi` installer.
+            * **macOS**: Download and run the `.pkg` installer.
+            * **Linux**: Install the `.deb` package using `sudo dpkg -i`.
+          draft: false
+          prerelease: false
+          # We don't have the files yet, we just create the shell
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
