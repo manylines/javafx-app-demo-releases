@@ -1,5 +1,5 @@
 {
-  "version": "1.0.6",
-  "notes": "Bumping version to 1.0.6 to check if alert is working.",
-  "updated_at": "2025-12-26T17:58:53Z"
+  "version": "1.0.7",
+  "notes": "Reduce image size, switch to Liberica JDK",
+  "updated_at": "2025-12-30T12:28:54Z"
 }
